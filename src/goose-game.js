@@ -22,7 +22,8 @@ class GooseGame {
   movePlayer (name, firstDice, secondDice) {
     const player = this._getPlayer(name)
     const step = firstDice + secondDice
-    return `${player.name} tira ${firstDice}, ${secondDice}. ${name} muove da ${GooseGame.printablePositionFor(player)} a ${player.position + step}`
+    let nextPosition = player.position + step
+    return `${player.name} tira ${firstDice}, ${secondDice}. ${name} muove da ${GooseGame.printablePositionFor(player)} a ${nextPosition}`
   }
   _getPlayer (name) {
     return this.players.find(player => name === player.name)
