@@ -22,7 +22,10 @@ class GooseGame {
   movePlayer (name, firstDice, secondDice) {
     const player = this.players.find(player => name === player.name)
     const sum = firstDice + secondDice
-    return `${player.name} tira ${firstDice}, ${secondDice}. ${name} muove da ${player.position || 'Partenza'} a ${player.position + sum}`
+    return `${player.name} tira ${firstDice}, ${secondDice}. ${name} muove da ${GooseGame.printablePositionFor(player)} a ${player.position + sum}`
+  }
+  static printablePositionFor (player) {
+    return player.position || 'Partenza'
   }
 }
 
