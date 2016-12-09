@@ -29,6 +29,12 @@ describe('goose game', function () {
     const message = this.game.movePlayer('Pluto', 2, 3)
     equal(message, `Pluto tira 2, 3. Pluto muove da 6 a 11`)
   })
+  it('is won when player reaches position 63', () => {
+    this.game.addPlayer('Pippo', 60)
+    const message = this.game.movePlayer('Pippo', 2, 1)
+    equal(message, `Pippo tira 2, 1. Pippo muove da 60 a 63. Pippo vince!!`)
+  })
+  it('rebounces player when position goes over 63')
 })
 
 describe('GooseGamePlayer', function () {
