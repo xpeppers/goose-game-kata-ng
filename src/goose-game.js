@@ -1,8 +1,8 @@
 class GooseGamePlayer {
-  constructor (name) {
+  constructor (name, position) {
     this.name = name
+    this.position = position
   }
-
   toString () {
     return this.name
   }
@@ -11,24 +11,18 @@ class GooseGamePlayer {
 class GooseGame {
   constructor () {
     this.players = []
-    this.positions = []
   }
   addPlayer (name, position = 0) {
     if (this.players.map(i => i.name).includes(name)) {
       return `${name}: giocatore già presente`
     }
-
-    this.positions.push(position)
-
-    this.players.push(new GooseGamePlayer(name))
+    this.players.push(new GooseGamePlayer(name, position))
     return `Giocatori: ${this.players.map(i => i.name).join(', ')}`
   }
   movePlayer (name, firstDice, secondDice) {
-    let index = this.players.map(i => i.name).indexOf(name)
-    let previousPosition = this.positions[index]
-    let sum = firstDice + secondDice
-    let previousLabel = previousPosition || 'Partenza'
-    return `${name} tira ${firstDice}, ${secondDice}. ${name} muove da ${previousLabel} a ${previousPosition + sum}`
+    const player = this.players.find(player => name === player.name)
+    const sum = firstDice + secondDice
+    return `${player.name} tira ${firstDice}, ${secondDice}. ${name} muove da ${player.position || 'Partenza'} a ${player.position + sum}`
   }
 }
 
