@@ -30,11 +30,18 @@ class GooseGame {
   movePlayer (name, firstDie, secondDie) {
     const player = this._getPlayer(name)
     player.updatePosition(player.position + firstDie + secondDie)
-    let response = `${player.name} tira ${firstDie}, ${secondDie}. ${player.name} muove da ${player.previous || 'Partenza'} a ${player.position}`
+
     if (player.hasWon()) {
-      response = `${response}. ${player.name} vince!!`
+      return `${player.name} tira ${firstDie}, ${secondDie}. ${player.name} muove da ${player.previous || 'Partenza'} a ${player.position}. ${player.name} vince!!`
     }
-    return response
+
+    if (player.position > 63) {
+      const previous = player.previous
+      player.updatePosition(63 - player.position % 63)
+      return `${player.name} tira ${firstDie}, ${secondDie}. ${player.name} muove da ${previous || 'Partenza'} a 63. Pippo rimbalza! Pippo torna a ${player.position}`
+    }
+
+    return `${player.name} tira ${firstDie}, ${secondDie}. ${player.name} muove da ${player.previous || 'Partenza'} a ${player.position}`
   }
   _getPlayer (name) {
     return this.players.find(player => name === player.name)
