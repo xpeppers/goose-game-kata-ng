@@ -13,16 +13,29 @@ class GooseGame {
     this.players = []
   }
   addPlayer (name, position = 0) {
-    if (this.players.map(i => i.name).includes(name)) {
+    if (this._hasPlayer(name)) {
       return `${name}: giocatore già presente`
     }
-    this.players.push(new GooseGamePlayer(name, position))
-    return `Giocatori: ${this.players.map(i => i.name).join(', ')}`
+    this._addPlayer(name, position)
+    return this._printPlayers()
   }
   movePlayer (name, firstDice, secondDice) {
-    const player = this.players.find(player => name === player.name)
-    const sum = firstDice + secondDice
-    return `${player.name} tira ${firstDice}, ${secondDice}. ${name} muove da ${GooseGame.printablePositionFor(player)} a ${player.position + sum}`
+    const player = this._getPlayer(name)
+    const step = firstDice + secondDice
+    return `${player.name} tira ${firstDice}, ${secondDice}. ${name} muove da ${GooseGame.printablePositionFor(player)} a ${player.position + step}`
+  }
+  _getPlayer (name) {
+    return this.players.find(player => name === player.name)
+  }
+  _addPlayer (name, position) {
+    let player = new GooseGamePlayer(name, position)
+    this.players.push(player)
+  }
+  _hasPlayer (name) {
+    return this.players.some(player => name === player.name)
+  }
+  _printPlayers () {
+    return `Giocatori: ${this.players.join(', ')}`
   }
   static printablePositionFor (player) {
     return player.position || 'Partenza'
