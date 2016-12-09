@@ -2,22 +2,16 @@ const {equal} = require('assert')
 const {GooseGame} = require('../../src/goose-game')
 
 describe('game', function () {
+  beforeEach(() => {
+    this.game = new GooseGame()
+  })
   it('adds player to game', () => {
-    const game = new GooseGame()
-    const name = 'Pippo'
-    const message = game.addPlayer(name)
-
-    equal(`Giocatori: ${name}`, message)
+    const message = this.game.addPlayer('Pippo')
+    equal(message, `Giocatori: Pippo`)
   })
   it('adds subsequent player to game', () => {
-    const game = new GooseGame()
-
-    const name1 = 'Pippo'
-    const name2 = 'Pluto'
-
-    game.addPlayer(name1)
-    const message = game.addPlayer(name2)
-
-    equal(`Giocatori: ${name1}, ${name2}`, message)
+    this.game.addPlayer('Pippo')
+    const message = this.game.addPlayer('Pluto')
+    equal(message, `Giocatori: Pippo, Pluto`)
   })
 })
