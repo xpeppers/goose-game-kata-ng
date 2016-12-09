@@ -2,9 +2,17 @@ class GooseGamePlayer {
   constructor (name, position) {
     this.name = name
     this.position = position
+    this.previous = undefined
+  }
+  hasWon () {
+    return this.position === 63
   }
   toString () {
     return this.name
+  }
+  updatePosition (position) {
+    this.previous = this.position
+    this.position = position
   }
 }
 
@@ -21,10 +29,9 @@ class GooseGame {
   }
   movePlayer (name, firstDie, secondDie) {
     const player = this._getPlayer(name)
-    const step = firstDie + secondDie
-    let nextPosition = player.position + step
-    let response = `${player.name} tira ${firstDie}, ${secondDie}. ${player.name} muove da ${GooseGame.printablePositionFor(player)} a ${nextPosition}`
-    if (nextPosition === 63) {
+    player.updatePosition(player.position + firstDie + secondDie)
+    let response = `${player.name} tira ${firstDie}, ${secondDie}. ${player.name} muove da ${player.previous || 'Partenza'} a ${player.position}`
+    if (player.hasWon()) {
       response = `${response}. ${player.name} vince!!`
     }
     return response
@@ -41,9 +48,6 @@ class GooseGame {
   }
   _printablePlayers () {
     return `Giocatori: ${this.players.join(', ')}`
-  }
-  static printablePositionFor (player) {
-    return player.position || 'Partenza'
   }
 }
 
