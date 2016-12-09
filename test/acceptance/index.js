@@ -1,5 +1,5 @@
 const {equal} = require('assert')
-const {GooseGame} = require('../../src/goose-game')
+const {GooseGame, GooseGamePlayer} = require('../../src/goose-game')
 
 describe('goose game', function () {
   beforeEach(() => {
@@ -28,5 +28,12 @@ describe('goose game', function () {
     this.game.addPlayer('Pippo', 6)
     const message = this.game.movePlayer('Pippo', 2, 3)
     equal(message, `Pippo tira 2, 3. Pippo muove da 6 a 11`)
+  })
+})
+
+describe('GooseGamePlayer', function () {
+  it('takes a name argument', () => {
+    const player = new GooseGamePlayer('foo')
+    equal(player.name, 'foo')
   })
 })
