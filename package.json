@@ -1,0 +1,36 @@
+{
+  "name": "goose-game-kata-ng",
+  "version": "1.0.0",
+  "private": true,
+  "description": "goose game kata",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xpeppers/goose-game-kata-ng.git"
+  },
+  "author": "Ivo von Putzer Reibegg <ivo.putzer@gmail.com> (https://github.com/ivoputzer)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xpeppers/goose-game-kata-ng/issues"
+  },
+  "homepage": "https://github.com/xpeppers/goose-game-kata-ng#readme",
+  "standard": {
+    "globals": [
+      "describe",
+      "context",
+      "before",
+      "beforeEach",
+      "after",
+      "afterEach",
+      "it",
+      "expect"
+    ]
+  },
+  "dependencies": {
+    "mocha": "^3.2.0",
+    "standard": "^8.6.0"
+  }
+}
