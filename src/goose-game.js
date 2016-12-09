@@ -17,8 +17,15 @@ class GooseGamePlayer {
 }
 
 class GooseGame {
-  constructor () {
+  static random2DiceRoller () {
+    return [
+      1 + Math.round(5 * Math.random()),
+      1 + Math.round(5 * Math.random())
+    ]
+  }
+  constructor (diceRollerFn = GooseGame.random2DiceRoller) {
     this.players = []
+    this.diceRollerFn = diceRollerFn
   }
   addPlayer (name, position = 0) {
     if (this._hasPlayer(name)) {
@@ -27,7 +34,11 @@ class GooseGame {
     this._addPlayer(name, position)
     return this._printablePlayers()
   }
-  movePlayer (name, firstDie, secondDie) {
+  movePlayer (name) {
+    let [firstDie, secondDie] = this.diceRollerFn()
+    return this._movePlayer(name, firstDie, secondDie)
+  }
+  _movePlayer (name, firstDie, secondDie) {
     const player = this._getPlayer(name)
     player.updatePosition(player.position + firstDie + secondDie)
 
