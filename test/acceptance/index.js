@@ -25,9 +25,9 @@ describe('goose game', function () {
     equal(message, `Pippo tira 4, 2. Pippo muove da Partenza a 6`)
   })
   it('moves player from previous position', () => {
-    this.game.addPlayer('Pippo', 6)
-    const message = this.game.movePlayer('Pippo', 2, 3)
-    equal(message, `Pippo tira 2, 3. Pippo muove da 6 a 11`)
+    this.game.addPlayer('Pluto', 6)
+    const message = this.game.movePlayer('Pluto', 2, 3)
+    equal(message, `Pluto tira 2, 3. Pluto muove da 6 a 11`)
   })
 })
 
