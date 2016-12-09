@@ -19,4 +19,14 @@ describe('goose game', function () {
     const message = this.game.addPlayer('Pippo')
     equal(message, `Pippo: giocatore già presente`)
   })
+  it('moves player from initial position', () => {
+    this.game.addPlayer('Pippo')
+    const message = this.game.movePlayer('Pippo', 4, 2)
+    equal(message, `Pippo tira 4, 2. Pippo muove da Partenza a 6`)
+  })
+  it('moves player from previous position', () => {
+    this.game.addPlayer('Pippo', 6)
+    const message = this.game.movePlayer('Pippo', 2, 3)
+    equal(message, `Pippo tira 2, 3. Pippo muove da 6 a 11`)
+  })
 })
