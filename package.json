@@ -5,6 +5,7 @@
   "description": "goose game kata",
   "main": "index.js",
   "scripts": {
+    "start": "node autoplay.js",
     "test": "mocha --recursive"
   },
   "repository": {

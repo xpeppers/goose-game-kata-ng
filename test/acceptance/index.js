@@ -71,3 +71,9 @@ describe('GooseGamePlayer', function () {
     equal(player.name, 'foo')
   })
 })
+
+describe('GooseGameLauncher', function () {
+  const { execSync } = require('child_process')
+  const output = execSync('npm -s start').toString()
+  ok(output.match(/vince!!\s*$/i))
+})
