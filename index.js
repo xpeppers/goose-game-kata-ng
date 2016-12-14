@@ -3,7 +3,7 @@ class GooseGame {
     this.players = []
   }
   addPlayer (name) {
-    if(this.players.indexOf(name) !== -1) {
+    if (~this.players.indexOf(name)) {
       return 'Pippo: giocatore già presente'
     }
     this.players.push(name)
