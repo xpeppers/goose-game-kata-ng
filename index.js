@@ -1,3 +1,16 @@
+class GooseGamePlayer {
+  constructor (name, position) {
+    this._name = name
+    this._position = position
+  }
+  get name () {
+    return this._name
+  }
+  get position () {
+    return this._position
+  }
+}
+
 class GooseGame {
   constructor () {
     this.players = []
@@ -46,4 +59,4 @@ function byName (name) {
   }
 }
 
-module.exports = {GooseGame}
+module.exports = {GooseGame, GooseGamePlayer}

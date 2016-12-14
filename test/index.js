@@ -1,5 +1,5 @@
 const {equal} = require('assert')
-const {GooseGame} = require('..')
+const {GooseGame, GooseGamePlayer} = require('..')
 
 describe('GooseGame', function () {
   it('adds player to the game', function () {
@@ -52,5 +52,13 @@ describe('GooseGame', function () {
     game.movePlayer('Pluto', 60, 0)
     const message = game.movePlayer('Pluto', 3, 2)
     equal(message, 'Pluto tira 3, 2. Pluto muove da 60 a 63. Pluto rimbalza! Pluto torna a 61')
+  })
+})
+
+describe('GooseGamePlayer', function () {
+  it('can be initialized with name and position', function () {
+    const player = new GooseGamePlayer('Pippo', 0)
+    equal(player.name, 'Pippo')
+    equal(player.position, 0)
   })
 })
