@@ -46,4 +46,11 @@ describe('GooseGame', function () {
     const message = game.movePlayer('Pippo', 1, 2)
     equal(message, 'Pippo tira 1, 2. Pippo muove da 60 a 63. Pippo vince!!')
   })
+  it('player goes beyond 63', function () {
+    const game = new GooseGame()
+    game.addPlayer('Pippo')
+    game.movePlayer('Pippo', 60, 0)
+    const message = game.movePlayer('Pippo', 3, 2)
+    equal(message, 'Pippo tira 3, 2. Pippo muove da 60 a 63. Pippo rimbalza! Pippo torna a 61')
+  })
 })

@@ -15,6 +15,9 @@ class GooseGame {
     player.position += firstDie + secondDie
     if (hasWon(player)) {
       return `${name} tira ${firstDie}, ${secondDie}. ${player.name} muove da ${position || 'partenza'} a ${player.position}. ${player.name} vince!!`
+    } else if (player.position > 63) {
+      player.position = 63 - (player.position - 63)
+      return `${name} tira ${firstDie}, ${secondDie}. ${player.name} muove da ${position || 'partenza'} a 63. Pippo rimbalza! Pippo torna a ${player.position}`
     }
     return `${name} tira ${firstDie}, ${secondDie}. ${player.name} muove da ${position || 'partenza'} a ${player.position}`
   }
