@@ -9,8 +9,8 @@ class GooseGame {
     this.players.push(name)
     return `Giocatori: ${this.players.join(', ')}`
   }
-  movePlayer () {
-    return 'Pippo tira 4, 2. Pippo muove da parteza a 6'
+  movePlayer (name, firstDie, secondDie) {
+    return `${name} tira ${firstDie}, ${secondDie}. ${name} muove da parteza a ${firstDie + secondDie}`
   }
 }
 

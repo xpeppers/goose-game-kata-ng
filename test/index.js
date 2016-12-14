@@ -20,11 +20,17 @@ describe('GooseGame', function () {
     const message = game.addPlayer(playerName)
     equal(message, `${playerName}: giocatore già presente`)
   })
-  it('moves the player', function () {
+  it('moves a player', function () {
     const game = new GooseGame()
     game.addPlayer('Pippo')
     const message = game.movePlayer('Pippo', 4, 2)
     equal(message, 'Pippo tira 4, 2. Pippo muove da parteza a 6')
+  })
+  it('moves another player', function () {
+    const game = new GooseGame()
+    game.addPlayer('Pluto')
+    const message = game.movePlayer('Pluto', 2, 2)
+    equal(message, 'Pluto tira 2, 2. Pluto muove da parteza a 4')
   })
   it.skip('set startig position when a player is added to the game', function () {
     const game = new GooseGame()
