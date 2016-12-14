@@ -11,15 +11,15 @@ class GooseGame {
   }
   movePlayer (name, firstDie, secondDie) {
     let player = this.players.find(byName(name))
-    let position = player.position
+    let message = `${player.name} tira ${firstDie}, ${secondDie}. ${player.name} muove da ${player.position || 'partenza'} a `
     player.position += firstDie + secondDie
     if (hasWon(player)) {
-      return `${name} tira ${firstDie}, ${secondDie}. ${player.name} muove da ${position || 'partenza'} a ${player.position}. ${player.name} vince!!`
+      return message + `${player.position}. ${player.name} vince!!`
     } else if (player.position > 63) {
       player.position = 63 - (player.position - 63)
-      return `${name} tira ${firstDie}, ${secondDie}. ${player.name} muove da ${position || 'partenza'} a 63. Pippo rimbalza! Pippo torna a ${player.position}`
+      return message + `63. Pippo rimbalza! Pippo torna a ${player.position}`
     }
-    return `${name} tira ${firstDie}, ${secondDie}. ${player.name} muove da ${position || 'partenza'} a ${player.position}`
+    return message + `${player.position}`
   }
 }
 
