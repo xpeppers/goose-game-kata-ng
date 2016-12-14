@@ -24,14 +24,22 @@ describe('GooseGame', function () {
     const game = new GooseGame()
     game.addPlayer('Pippo')
     const message = game.movePlayer('Pippo', 4, 2)
-    equal(message, 'Pippo tira 4, 2. Pippo muove da parteza a 6')
+    equal(message, 'Pippo tira 4, 2. Pippo muove da partenza a 6')
   })
   it('moves another player', function () {
     const game = new GooseGame()
     game.addPlayer('Pluto')
     const message = game.movePlayer('Pluto', 2, 2)
-    equal(message, 'Pluto tira 2, 2. Pluto muove da parteza a 4')
+    equal(message, 'Pluto tira 2, 2. Pluto muove da partenza a 4')
   })
+  it('moves player from the last position', function () {
+    const game = new GooseGame()
+    game.addPlayer('Pluto')
+    game.movePlayer('Pluto', 4, 2)
+    const message = game.movePlayer('Pluto', 2, 3)
+    equal(message, 'Pluto tira 2, 3. Pluto muove da 6 a 11')
+  })
+
   it.skip('set startig position when a player is added to the game', function () {
     const game = new GooseGame()
     game.addPlayer('Pluto')
