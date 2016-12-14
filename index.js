@@ -2,11 +2,11 @@ class GooseGame {
   constructor () {
     this.players = []
   }
-  addPlayer (name) {
+  addPlayer (name, position = 0) {
     if (this.players.some(byName(name))) {
       return `${name}: giocatore già presente`
     }
-    this.players.push({'name': name, 'position': 0})
+    this.players.push({name, position})
     return `Giocatori: ${this.players.map(player => player.name).join(', ')}`
   }
   movePlayer (name, firstDie, secondDie) {
