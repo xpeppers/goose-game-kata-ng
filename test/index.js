@@ -39,11 +39,11 @@ describe('GooseGame', function () {
     const message = game.movePlayer('Pluto', 2, 3)
     equal(message, 'Pluto tira 2, 3. Pluto muove da 6 a 11')
   })
-
-  it.skip('set startig position when a player is added to the game', function () {
+  it('player wins on 63', function () {
     const game = new GooseGame()
-    game.addPlayer('Pluto')
-    var message = ''
-    equal(message, 'Pluto: giocatore già presente')
+    game.addPlayer('Pippo')
+    game.movePlayer('Pippo', 60, 0)
+    const message = game.movePlayer('Pippo', 1, 2)
+    equal(message, 'Pippo tira 1, 2. Pippo muove da 60 a 63. Pippo vince!!')
   })
 })
