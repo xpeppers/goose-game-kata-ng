@@ -1,7 +1,14 @@
-const {equal} = require('assert')
+const {equal, ok} = require('assert')
 const {GooseGame, GooseGamePlayer} = require('..')
 
 describe('GooseGame', function () {
+  describe('.addPlayer', function () {
+    it('stores GooseGamePlayer object', function () {
+      const game = new GooseGame()
+      game.addPlayer('Pippo')
+      ok(game.players[0] instanceof GooseGamePlayer, 'player is not an instance of GooseGamePlayer')
+    })
+  })
   it('adds player to the game', function () {
     const game = new GooseGame()
     const message = game.addPlayer('Pippo')

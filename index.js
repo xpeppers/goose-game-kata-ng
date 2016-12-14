@@ -9,6 +9,9 @@ class GooseGamePlayer {
   get position () {
     return this._position
   }
+  set position (value) {
+    this._position = value
+  }
 }
 
 class GooseGame {
@@ -19,7 +22,7 @@ class GooseGame {
     if (this.players.some(byName(name))) {
       return `${name}: giocatore già presente`
     }
-    this.players.push({name, position})
+    this.players.push(new GooseGamePlayer(name, position))
     return `Giocatori: ${this.players.map(player => player.name).join(', ')}`
   }
   movePlayer (name, firstDie, secondDie) {
