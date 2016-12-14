@@ -1,5 +1,4 @@
 class GooseGame {
-  static get WIN_STEP () { return 63 }
   constructor () {
     this.players = []
   }
@@ -12,11 +11,17 @@ class GooseGame {
   }
   movePlayer (name, firstDie, secondDie) {
     let player = this.players.find(byName(name))
-    let positionLabel = player.position || 'partenza'
-    player.position += (firstDie + secondDie)
-    let winMessage = player.position === GooseGame.WIN_STEP ? `. ${player.name} vince!!` : ''
-    return `${name} tira ${firstDie}, ${secondDie}. ${player.name} muove da ${positionLabel} a ${player.position}` + winMessage
+    let position = player.position
+    player.position += firstDie + secondDie
+    if (hasWon(player)) {
+      return `${name} tira ${firstDie}, ${secondDie}. ${player.name} muove da ${position || 'partenza'} a ${player.position}. ${player.name} vince!!`
+    }
+    return `${name} tira ${firstDie}, ${secondDie}. ${player.name} muove da ${position || 'partenza'} a ${player.position}`
   }
+}
+
+function hasWon (player) {
+  return player.position === 63
 }
 
 function byName (name) {
