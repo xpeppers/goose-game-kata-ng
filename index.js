@@ -1,10 +1,10 @@
 class GooseGame {
   constructor () {
-    this.names = []
+    this.players = []
   }
   addPlayer (name) {
-    this.names.push(name)
-    return `Giocatori: ${this.names.join(', ')}`
+    this.players.push(name)
+    return `Giocatori: ${this.players.join(', ')}`
   }
 }
 
