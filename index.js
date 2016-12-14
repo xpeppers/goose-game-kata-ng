@@ -13,9 +13,9 @@ class GooseGame {
   }
   movePlayer (name, firstDie, secondDie) {
     let index = this.players.indexOf(name)
-    let position = this.positions[index] === 0 ? 'partenza' : this.positions[index]
+    let positionLabel = this.positions[index] || 'partenza'
     this.positions[index] += (firstDie + secondDie)
-    return `${name} tira ${firstDie}, ${secondDie}. ${name} muove da ${position} a ${this.positions[index]}`
+    return `${name} tira ${firstDie}, ${secondDie}. ${name} muove da ${positionLabel} a ${this.positions[index]}`
   }
 }
 
