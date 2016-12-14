@@ -15,8 +15,12 @@ class GooseGamePlayer {
 }
 
 class GooseGame {
-  constructor () {
+  static rollDice () {
+    return [Math.round(1 + Math.random() * 5), Math.round(1 + Math.random() * 5)]
+  }
+  constructor (diceRoller = GooseGame.rollDice) {
     this.players = []
+    this.diceRoller = diceRoller
   }
   addPlayer (name, position = 0) {
     if (this.players.some(byName(name))) {
@@ -25,7 +29,13 @@ class GooseGame {
     this.players.push(new GooseGamePlayer(name, position))
     return `Giocatori: ${this.players.map(player => player.name).join(', ')}`
   }
-  movePlayer (name, firstDie, secondDie) {
+  hasEnded () {
+    return this.players.some(hasWon)
+  }
+  movePlayer (name) {
+    return this._movePlayer(name, ...this.diceRoller())
+  }
+  _movePlayer (name, firstDie, secondDie) {
     let player = this.players.find(byName(name))
     let message = `${player.name} tira ${firstDie}, ${secondDie}. ${player.name} muove da ${player.position || 'partenza'} a `
     player.position += firstDie + secondDie
