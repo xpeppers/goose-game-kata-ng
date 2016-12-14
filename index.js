@@ -14,17 +14,30 @@ class GooseGame {
     let message = `${player.name} tira ${firstDie}, ${secondDie}. ${player.name} muove da ${player.position || 'partenza'} a `
     player.position += firstDie + secondDie
     if (hasWon(player)) {
-      return message + `${player.position}. ${player.name} vince!!`
-    } else if (player.position > 63) {
-      player.position = 63 - (player.position - 63)
-      return message + `63. ${player.name} rimbalza! ${player.name} torna a ${player.position}`
+      return appendWinMessageTo(message, player)
     }
-    return message + `${player.position}`
+    if (hasBounced(player)) {
+      player.position = 63 - (player.position - 63)
+      return appendBounceMessageTo(message, player)
+    }
+    return `${message}${player.position}`
   }
 }
 
-function hasWon (player) {
-  return player.position === 63
+function appendWinMessageTo (message, {name, position}) {
+  return `${message}${position}. ${name} vince!!`
+}
+
+function appendBounceMessageTo (message, {name, position}) {
+  return `${message}63. ${name} rimbalza! ${name} torna a ${position}`
+}
+
+function hasWon ({position}) {
+  return position === 63
+}
+
+function hasBounced ({position}) {
+  return position > 63
 }
 
 function byName (name) {
