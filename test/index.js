@@ -26,4 +26,16 @@ describe('GooseGame', function () {
     const message = game.addPlayer('Pluto')
     equal(message, 'Pluto: giocatore già presente')
   })
+  it('moves the player', function () {
+    const game = new GooseGame()
+    game.addPlayer('Pippo')
+    const message = game.movePlayer('Pippo', 4, 2)
+    equal(message, 'Pippo tira 4, 2. Pippo muove da parteza a 6')
+  })
+  it.skip('set startig position when a player is added to the game', function () {
+    const game = new GooseGame()
+    game.addPlayer('Pluto')
+    var message = ''
+    equal(message, 'Pluto: giocatore già presente')
+  })
 })
