@@ -17,7 +17,7 @@ class GooseGame {
       return message + `${player.position}. ${player.name} vince!!`
     } else if (player.position > 63) {
       player.position = 63 - (player.position - 63)
-      return message + `63. Pippo rimbalza! Pippo torna a ${player.position}`
+      return message + `63. ${player.name} rimbalza! ${player.name} torna a ${player.position}`
     }
     return message + `${player.position}`
   }
