@@ -4,7 +4,7 @@ class GooseGame {
   }
   addPlayer (name) {
     if (~this.players.indexOf(name)) {
-      return 'Pippo: giocatore già presente'
+      return `${name}: giocatore già presente`
     }
     this.players.push(name)
     return `Giocatori: ${this.players.join(', ')}`

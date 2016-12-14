@@ -20,4 +20,10 @@ describe('GooseGame', function () {
     const message = game.addPlayer('Pippo')
     equal(message, 'Pippo: giocatore già presente')
   })
+  it('refuse to add a player that already exists and not Pippo', function () {
+    const game = new GooseGame()
+    game.addPlayer('Pluto')
+    const message = game.addPlayer('Pluto')
+    equal(message, 'Pluto: giocatore già presente')
+  })
 })
