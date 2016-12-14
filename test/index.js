@@ -20,40 +20,33 @@ describe('GooseGame', function () {
     const message = game.addPlayer(playerName)
     equal(message, `${playerName}: giocatore già presente`)
   })
-  it('moves a player', function () {
+  it('can move a player', function () {
     const game = new GooseGame()
     game.addPlayer('Pippo')
     const message = game.movePlayer('Pippo', 4, 2)
     equal(message, 'Pippo tira 4, 2. Pippo muove da partenza a 6')
   })
-  it('moves another player', function () {
+  it('can move another player', function () {
     const game = new GooseGame()
     game.addPlayer('Pluto')
     const message = game.movePlayer('Pluto', 2, 2)
     equal(message, 'Pluto tira 2, 2. Pluto muove da partenza a 4')
   })
-  it('moves player from the last position', function () {
+  it('can move player from the last position', function () {
     const game = new GooseGame()
     game.addPlayer('Pluto')
     game.movePlayer('Pluto', 4, 2)
     const message = game.movePlayer('Pluto', 2, 3)
     equal(message, 'Pluto tira 2, 3. Pluto muove da 6 a 11')
   })
-  it('player wins on 63', function () {
+  it('ends when player reaches 63', function () {
     const game = new GooseGame()
     game.addPlayer('Pippo')
     game.movePlayer('Pippo', 60, 0)
     const message = game.movePlayer('Pippo', 1, 2)
     equal(message, 'Pippo tira 1, 2. Pippo muove da 60 a 63. Pippo vince!!')
   })
-  it('player goes beyond 63', function () {
-    const game = new GooseGame()
-    game.addPlayer('Pippo')
-    game.movePlayer('Pippo', 60, 0)
-    const message = game.movePlayer('Pippo', 3, 2)
-    equal(message, 'Pippo tira 3, 2. Pippo muove da 60 a 63. Pippo rimbalza! Pippo torna a 61')
-  })
-  it('another player goes beyond 63', function () {
+  it('bounces a player when he goes beyond 63', function () {
     const game = new GooseGame()
     game.addPlayer('Pluto')
     game.movePlayer('Pluto', 60, 0)
